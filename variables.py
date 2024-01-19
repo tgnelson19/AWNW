@@ -1,4 +1,5 @@
 import pygame
+from bullet import Bullet
 
 class Variables:
 
@@ -23,9 +24,11 @@ class Variables:
         self.mouseDown = False
         self.mouseX, self.mouseY = 0,0
 
+        self.bullet = Bullet()
+
 
     def eventHandler(self):
-        self.clock.tick(60)  # Keeps program to only 30 frames per second
+        self.clock.tick(120)  # Keeps program to only 30 frames per second
         self.mouseX, self.mouseY = pygame.mouse.get_pos() # Saves current mouse position
 
         for event in pygame.event.get():  # Main event handler
@@ -54,6 +57,8 @@ class Variables:
         self.eventHandler()  # Updates with any potential user interaction
 
         self.bugCheckerOnMousePos() # Helps determine mouse position
+
+        self.bullet.update(self.screen, self.sW, self.sH)
 
         self.finishPaint()  # Paints whatever is desired from last frame on the screen
 
