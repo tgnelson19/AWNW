@@ -10,12 +10,12 @@ class Bullet:
           
         self.bulletCenterX, self.bulletCenterY = 100, 100
         self.bulletCenterDir = random.randint(1,360)
-        self.bulletCenterSpeed = 50
+        self.bulletCenterSpeed = 4
         
-        self.outerRingRadius = 10
+        self.outerRingRadius = 40
 
-        self.helixAmplitude = 10
-        self.helixStrandThickness = 1
+        self.helixAmplitude = 40
+        self.helixStrandThickness = 12
         self.helixSpeed = 4
         self.helixFrequency = 0.5
 
@@ -29,8 +29,8 @@ class Bullet:
         self.greenLeafPosX = 0
         self.greenLeafPosY = 0
 
-        self.numOfBubs = 32
-        self.numOfCircs = 111
+        self.numOfBubs = 512
+        self.numOfCircs = 4
         
 
     def update(self, screen, sW, sH):
@@ -43,12 +43,11 @@ class Bullet:
         self.bulletCenterX += self.bulletCenterSpeed*math.cos(self.bulletCenterDir/180)
         self.bulletCenterY += self.bulletCenterSpeed*math.sin(self.bulletCenterDir/180)
 
-
-        colorThisRun = (random.randint(0,255),(random.randint(0,255)),(random.randint(0,255)))
-
         self.time += 0.01
 
         for j in range(1, self.numOfCircs):
+
+            colorThisRun = (random.randint(0,255),(random.randint(0,255)),(random.randint(0,255)))
 
             for i in range(self.numOfBubs):
 
