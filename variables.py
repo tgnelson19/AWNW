@@ -24,7 +24,7 @@ class Variables:
         self.mouseDown = False
         self.mouseX, self.mouseY = 0,0
 
-        self.bullet = Bullet()
+        self.bullet = Bullet(self.infoObject.current_w, self.infoObject.current_h)
 
 
     def eventHandler(self):
