@@ -16,7 +16,7 @@ class Bullet:
 
         self.ORRFlip = True
         self.ORRMax = 250
-        self.ORRMin = 10
+        self.ORRMin = 35
         self.ORRDelta = 1
 
         self.helixAmplitude = 40
@@ -34,7 +34,7 @@ class Bullet:
         self.greenLeafPosX = 0
         self.greenLeafPosY = 0
 
-        self.numOfBubs = 128
+        self.numOfBubs = 7
         self.numOfCircs = 3
         
 
@@ -51,12 +51,14 @@ class Bullet:
         self.time += 0.01
 
         if self.ORRFlip:
+            self.numOfBubs += 1
             self.outerRingRadius += self.ORRDelta
             self.helixAmplitude += self.ORRDelta/10
             self.helixFrequency += self.ORRDelta/1000
             if self.outerRingRadius == self.ORRMax:
                 self.ORRFlip = False
         else:
+            self.numOfBubs -=1
             self.outerRingRadius -= self.ORRDelta
             self.helixAmplitude -= self.ORRDelta/10
             self.helixFrequency -= self.ORRDelta/1000
@@ -74,11 +76,11 @@ class Bullet:
                 self.redLeafPosX = (self.helixSpeed*math.cos(self.redLeafDir + 360/j) * (self.helixAmplitude*math.cos(self.helixFrequency * 2 * math.pi * self.time+ (i/(self.numOfBubs/4)*math.pi)))) + self.outerRingRadius*math.cos(self.time + (i/(self.numOfBubs/4)*math.pi)+ 360/j) + self.bulletCenterX
                 self.redLeafPosY = (self.helixSpeed*math.sin(self.redLeafDir+ 360/j) * (self.helixAmplitude*math.sin(self.helixFrequency * 2 * math.pi * self.time+ (i/(self.numOfBubs/4)*math.pi)))) + self.outerRingRadius*math.sin(self.time + (i/(self.numOfBubs/4)*math.pi)+ 360/j) +self.bulletCenterY
 
-                redBullet = pygame.draw.rect(screen, colorThisRun, pygame.Rect(self.redLeafPosX, self.redLeafPosY, self.helixStrandThickness, self.helixStrandThickness))
+                pygame.draw.rect(screen, colorThisRun, pygame.Rect(self.redLeafPosX, self.redLeafPosY, self.helixStrandThickness, self.helixStrandThickness))
 
                 self.greenLeafDir = self.time
 
                 self.greenLeafPosX = (self.helixSpeed*math.cos(self.greenLeafDir+ 360/j) * -(self.helixAmplitude*math.cos(self.helixFrequency * 2 * math.pi * self.time+ (i/(self.numOfBubs/4)*math.pi)))) + self.outerRingRadius*math.cos(self.time + (i/(self.numOfBubs/4)*math.pi)+ 360/j) + self.bulletCenterX
                 self.greenLeafPosY = (self.helixSpeed*math.sin(self.greenLeafDir+ 360/j) * (self.helixAmplitude*math.sin(self.helixFrequency * 2 * math.pi * self.time+ (i/(self.numOfBubs/4)*math.pi)))) + self.outerRingRadius*math.sin(self.time + (i/(self.numOfBubs/4)*math.pi)+ 360/j) + self.bulletCenterY
 
-                greenBullet = pygame.draw.rect(screen, colorThisRun, pygame.Rect(self.greenLeafPosX, self.greenLeafPosY, self.helixStrandThickness, self.helixStrandThickness))
+                pygame.draw.rect(screen, colorThisRun, pygame.Rect(self.greenLeafPosX, self.greenLeafPosY, self.helixStrandThickness, self.helixStrandThickness))
